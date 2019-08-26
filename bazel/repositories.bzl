@@ -1,11 +1,12 @@
-load(":envoy_http_archive.bzl", "udpa_http_archive")
-load(":repository_locations.bzl", "REPOSITORY_LOCATIONS")
+load(":udpa_http_archive.bzl", "udpa_http_archive")
+load(":repository_locations.bzl", "GO_REPOSITORY_LOCATIONS", "REPOSITORY_LOCATIONS")
 
 # Make all contents of an external repository accessible under a filegroup.  Used for external HTTP
 # archives, e.g. cares.
 BUILD_ALL_CONTENT = """filegroup(name = "all", srcs = glob(["**"]), visibility = ["//visibility:public"])"""
 
 def udpa_api_dependencies():
+    # cc repos
     udpa_http_archive(
         "bazel_gazelle",
         locations = REPOSITORY_LOCATIONS,
@@ -54,6 +55,7 @@ def udpa_api_dependencies():
         build_file = "@com_google_protobuf//:six.BUILD",
         locations = REPOSITORY_LOCATIONS,
     )
+
     # Misc. rebinds
     native.bind(
         name = "six",

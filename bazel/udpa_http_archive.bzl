@@ -1,6 +1,7 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
-def udpa_http_archive(name, locations, **kwargs):
+def udpa_http_archive(name, locations, golang_repo = False, **kwargs):
     # `existing_rule_keys` contains the names of repositories that have already
     # been defined in the Bazel workspace. By skipping repos with existing keys,
     # users can override dependency versions by using standard Bazel repository
@@ -13,6 +14,16 @@ def udpa_http_archive(name, locations, **kwargs):
 
     loc_key = kwargs.pop("repository_key", name)
     location = locations[loc_key]
+
+    if golang_repo:
+        go_repository(
+            name = "org_golang_x_text",
+            importpath = locations["importpath"],
+            sum = locations["sum"],
+            version = locations["version"],
+            **kwargs
+        )
+        return
 
     # HTTP tarball at a given URL. Add a BUILD file if requested.
     http_archive(

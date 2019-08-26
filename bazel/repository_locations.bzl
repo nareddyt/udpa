@@ -49,3 +49,21 @@ REPOSITORY_LOCATIONS = dict(
         urls = ["https://files.pythonhosted.org/packages/b3/b2/238e2590826bfdd113244a40d9d3eb26918bd798fc187e2360a8367068db/six-1.10.0.tar.gz"],
     ),
 )
+
+GO_REPOSITORY_LOCATIONS = dict(
+    org_golang_x_text = dict(
+        importpath = "golang.org/x/text",
+        sum = "h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=",
+        version = "v0.3.0",
+    ),
+    org_golang_x_net = dict(
+        importpath = "golang.org/x/net",
+        sum = "h1:fHDIZ2oxGnUZRN6WgWFCbYBjH9uqVPRCUVUDhs0wnbA=",
+        version = "v0.0.0-20190813141303-74dc4d7220e7",
+    ),
+    org_golang_google_grpc = dict(
+        importpath = "google.golang.org/grpc",
+        sum = "h1:AzbTB6ux+okLTzP8Ru1Xs41C303zdcfEht7MQnYJt5A=",
+        version = "v1.23.0",
+    ),
+)
